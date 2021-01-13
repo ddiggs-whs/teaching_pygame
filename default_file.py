@@ -31,7 +31,7 @@ def main():
                 pass
             if event.type == pygame.QUIT:
                 custom_quit()
-        DISPLAYSURF.fill(DISPLAYSURF.fill(pygame.color.Color('black')))
+        DISPLAYSURF.fill(DISPLAYSURF.fill(pygame.color.Color('red')))
 
         # Update positions
         # Drawing new objects go here
