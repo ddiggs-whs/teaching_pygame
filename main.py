@@ -27,6 +27,7 @@ class BouncingRectangle(pygame.sprite.Sprite):
         super().__init__()
         self.image = pygame.Surface([width, height])
         self.rect = self.image.get_rect()
+
         self.x_color = RED
 
         self.image.fill(WHITE)
@@ -37,17 +38,22 @@ class BouncingRectangle(pygame.sprite.Sprite):
         self.y_speed = 5
 
     def update(self):
-        self.rect.left += self.x_speed
+        self.rect.x += self.x_speed
         if self.rect.right >= WINDOWWIDTH:
             self.x_speed *= -1
+            self.rect.x += self.x_speed
         if self.rect.left <= 0:
             self.x_speed *= -1
+            self.rect.x += self.x_speed
 
-        self.rect.top += self.y_speed
+        self.rect.y += self.y_speed
         if self.rect.bottom >= WINDOWHEIGHT:
             self.y_speed *= -1
+            self.rect.y += self.y_speed
         if self.rect.top <= 0:
             self.y_speed *= -1
+            self.rect.y += self.y_speed
+
 
 my_rectangle = BouncingRectangle(80, 80)
 my_group = pygame.sprite.Group()
@@ -57,12 +63,6 @@ my_group.add(my_rectangle)
 while True:
 
     for event in pygame.event.get():
-        if event.type == pygame.MOUSEMOTION:
-            mos_pos = pygame.mouse.get_pos()
-            if left < mos_pos[0] < left + width and top < mos_pos[1] < top + height:
-                x_color = GREEN
-            else:
-                x_color = RED
         if event.type == pygame.QUIT:
             quit()
 
